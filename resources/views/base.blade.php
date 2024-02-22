@@ -17,9 +17,9 @@
 
 <body>
 
-    {{-- @php
+    @php
         $routeName = request()->route()->getName();
-    @endphp --}}
+    @endphp
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <div class="container-fluid">
@@ -31,9 +31,9 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
 
-                {{-- <a @class(['nav-link', 'active' => str_starts_with($routeName, 'blog.')]) aria-current="page" href="{{ route('blog.index') }}">Blog</a> --}}
+                <a @class(['nav-link', 'active' => str_starts_with($routeName, 'blog.')]) aria-current="page" href="{{ route('blog.index') }}">Blog</a>
 
-                <a @class(['nav-link', 'active' => request()->route()->getName() == 'blog.index']) aria-current="page" href="{{ route('blog.index') }}">Blog</a>
+                {{-- <a @class(['nav-link', 'active' => request()->route()->getName() == 'blog.index']) aria-current="page" href="{{ route('blog.index') }}">Blog</a> --}}
 
               </li>
               <li class="nav-item">
@@ -45,6 +45,11 @@
       </nav>
 
     <div class="container">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         @yield('content')
     </div>
 
